@@ -2,6 +2,7 @@ var visitorCount = localStorage.getItem("page_view");
 
 // setting up a visitor count
 
+
 if(visitorCount){
 visitorCount = Number(visitorCount) + 1;
 }
