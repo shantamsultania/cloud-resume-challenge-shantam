@@ -8,8 +8,8 @@ on:
     branches:
       - main
     paths:
-      - 'terraform'
-      - 'Resume-website'
+      - 'terraform/'
+      - 'Resume-website/'
 permissions:
   contents: read
   issues: write
