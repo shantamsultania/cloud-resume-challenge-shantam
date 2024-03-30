@@ -42,7 +42,7 @@ jobs:
           exclude-workflow-initiator-as-approver: false
       - name: terraform apply to prod
         working-directory: ./terraform
-        run: terraform apply -var "aws_bucket_name==[\"${${{ secrets.AWS_S3_BUCKET }}}\"]" -no-color -input=false
+        run: terraform apply -var "aws_bucket_name==[\"${${{ secrets.AWS_S3_BUCKET }}}\"]" -no-color -input=false -auto-approve
       - name: upload to S3 bucket
         uses: jakejarvis/s3-sync-action@master
         with:
