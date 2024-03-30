@@ -7,7 +7,9 @@ on:
   push:
     branches:
       - main
-
+    paths:
+      - 'terraform'
+      - 'Resume-website'
 permissions:
   contents: read
   issues: write
@@ -19,6 +21,7 @@ env:
 
 jobs:
   aws-deploy:
+    if: github.event_name == 'push' && startsWith(github.event.head_commit.modified, 'terraform/')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Git repository
@@ -44,6 +47,7 @@ jobs:
         working-directory: ./terraform
         run: terraform apply -var "aws_bucket_name=${{ secrets.AWS_S3_BUCKET }}" -no-color -input=false -auto-approve
   front-end-deploy:
+    if: github.event_name == 'push' && startsWith(github.event.head_commit.modified, 'Resume-website/')
     runs-on: ubuntu-latest
     steps:
       - name: checkout github
