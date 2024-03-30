@@ -47,7 +47,7 @@ jobs:
         working-directory: ./terraform
         run: terraform apply -var "aws_bucket_name=${{ secrets.AWS_S3_BUCKET }}" -no-color -input=false -auto-approve
   front-end-deploy:
-    if: github.event_name == 'push' && startsWith(github.event.head_commit.modified, 'Resume-website/')
+    if: github.event_name == 'push' && startsWith(github.event.head_commit.modified, 'Resume-website')
     runs-on: ubuntu-latest
     steps:
       - name: checkout github
