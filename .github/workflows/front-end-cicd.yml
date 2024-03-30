@@ -4,7 +4,11 @@ on:
   workflow_dispatch:
   push:
     branches:
-    - main
+    - demo
+
+permissions:
+  contents: read
+  issues: write
 
 jobs:
   deploy:
