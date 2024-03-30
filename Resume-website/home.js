@@ -24,8 +24,6 @@
 //}
 
 
-
-
 const VISITORS_ENDPOINT =  "https://qs5835eazb.execute-api.us-east-1.amazonaws.com/prod";
 const VISITORS_ENDPOINT_LAMBDA_CROS = "https://zqnxfoio4w6mo5tffgyx5zlpya0xdtly.lambda-url.us-east-1.on.aws/"
 var display = document.getElementById("counter-output");
