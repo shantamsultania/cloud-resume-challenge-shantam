@@ -46,6 +46,8 @@ jobs:
   front-end-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout github
+        uses: actions/checkout@master
       - name: upload to S3 bucket
         uses: jakejarvis/s3-sync-action@master
         with:
