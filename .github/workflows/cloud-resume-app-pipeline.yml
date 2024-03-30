@@ -1,12 +1,12 @@
-name: testing branch Upload Website with terraform
+name: Upload Website with terraform
 
 on:
   workflow_dispatch:
     branches:
-      - test
+      - main
   push:
     branches:
-      - test
+      - main
 
 permissions:
   contents: read
