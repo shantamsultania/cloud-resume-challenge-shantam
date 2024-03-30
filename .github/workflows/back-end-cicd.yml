@@ -30,7 +30,7 @@ jobs:
         run: terraform init
       - name: terraform plan and test
         working-directory: ./terraform
-        run: terraform plan -var "aws_bucket_name==[\"${${{ secrets.AWS_S3_BUCKET }}}\"]"
+        run: terraform plan -var "aws_bucket_name=${{ secrets.AWS_S3_BUCKET }}"
       - name: approval required
         uses: trstringer/manual-approval@v1
         with:
@@ -51,3 +51,4 @@ jobs:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_REGION: 'us-east-1'
           SOURCE_DIR: 'Resume-website'
+
