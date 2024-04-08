@@ -3,10 +3,10 @@ name: Upload Website with terraform
 on:
   workflow_dispatch:
     branches:
-      - main
+      - test
   push:
     branches:
-      - main
+      - test
     paths:
       - 'terraform/'
       - 'Resume-website/'

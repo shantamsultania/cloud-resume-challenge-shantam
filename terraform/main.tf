@@ -1,7 +1,6 @@
 resource "aws_s3_bucket" "my_aws_bucket_example02" {
 
   bucket = var.aws_bucket_name
-
 }
 
 resource "aws_s3_bucket_public_access_block" "site" {
