@@ -1,12 +1,11 @@
-name: testing branch Upload Website with terraform
+name: Upload backend
 
 on:
-  workflow_dispatch:
-    branches:
-      - test
   push:
     branches:
-      - test
+      - main
+    paths:
+      - 'terraform'
 
 permissions:
   contents: read
@@ -18,7 +17,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 jobs:
-  aws-deploy:
+  backend-aws-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Git repository
@@ -43,15 +42,3 @@ jobs:
       - name: terraform apply to prod
         working-directory: ./terraform
         run: terraform apply -var "aws_bucket_name=${{ secrets.AWS_S3_BUCKET }}" -no-color -input=false -auto-approve
-  front-end-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: upload to S3 bucket
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl private --follow-symlinks --delete
-        env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_REGION: 'us-east-1'
-          SOURCE_DIR: 'Resume-website'
-

@@ -3,10 +3,10 @@ name: Upload Website with terraform
 on:
   workflow_dispatch:
     branches:
-      - main
+      - test
   push:
     branches:
-      - main
+      - test
     paths:
       - 'terraform/'
       - 'Resume-website/'
@@ -20,8 +20,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 jobs:
-  aws-deploy:
-    if: github.event_name == 'push' && startsWith(github.event.head_commit.modified, 'terraform/')
+  backend-aws-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Git repository
@@ -47,7 +46,6 @@ jobs:
         working-directory: ./terraform
         run: terraform apply -var "aws_bucket_name=${{ secrets.AWS_S3_BUCKET }}" -no-color -input=false -auto-approve
   front-end-deploy:
-    if: github.event_name == 'push' && startsWith(github.event.head_commit.modified, 'Resume-website/')
     runs-on: ubuntu-latest
     steps:
       - name: checkout github
