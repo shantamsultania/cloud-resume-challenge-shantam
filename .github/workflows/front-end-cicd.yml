@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'Resume-website'
+      - 'Resume-website/**'
 
 permissions:
   contents: read
@@ -17,6 +17,16 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 jobs:
+  list-changesg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List Changed Files
+        run: |
+          echo "Changed Files:"
+          echo "${{ github.event_name }} event"
+          echo "Modified Files: ${{ github.event.head_commit.modified }}"
+          echo "Added Files: ${{ github.event.head_commit.added }}"
+          echo "Removed Files: ${{ github.event.head_commit.removed }}"
   front-end-deploy:
     runs-on: ubuntu-latest
     steps:
