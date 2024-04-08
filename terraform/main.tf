@@ -21,7 +21,7 @@ resource "aws_s3_bucket_website_configuration" "site" {
   }
 
   error_document {
-    key = "resumeError.html"
+    key = "resumeErrorFile.html"
   }
 }
 
